@@ -21,7 +21,7 @@ class Score : MonoBehaviour
     }
     public void AddToScore(int score)
     {
-        if (score == 0)
+        if (currentScore == 0 && score < 0)
         {
             return;
         }
@@ -31,7 +31,7 @@ class Score : MonoBehaviour
     public void GameOver()
     {
         if (currentScore > HiScore) {
-            PlayerPrefs.SetInt("HiScore", HiScore);
+            PlayerPrefs.SetInt("HiScore", currentScore);
             //Go to main menu
         }
     }

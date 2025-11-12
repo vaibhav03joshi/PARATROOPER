@@ -51,6 +51,7 @@ MonoBehaviour:
   maxRange: 1
   downwardSpeed: -2
   _rigidbody: {fileID: 6269877675027580009}
+  attackingSpeed: 0.02
 --- !u!212 &7425658579887777823
 SpriteRenderer:
   m_ObjectHideFlags: 0

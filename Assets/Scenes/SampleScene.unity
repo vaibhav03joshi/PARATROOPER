@@ -1305,9 +1305,11 @@ GameObject:
   m_Component:
   - component: {fileID: 868314416}
   - component: {fileID: 868314417}
+  - component: {fileID: 868314418}
+  - component: {fileID: 868314419}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1386,6 +1388,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &868314418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868314415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff45453f8da31844960f33127ade9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpawn: {fileID: 1047475471}
+  rotatingPoint: {fileID: 102942808}
+--- !u!61 &868314419
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868314415}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &911899714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,9 +1457,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 911899715}
-  - component: {fileID: 911899716}
   - component: {fileID: 911899717}
   - component: {fileID: 911899718}
+  - component: {fileID: 911899720}
   - component: {fileID: 911899719}
   m_Layer: 0
   m_Name: Manager
@@ -1423,20 +1485,6 @@ Transform:
   - {fileID: 1111603415}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &911899716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 911899714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bff45453f8da31844960f33127ade9bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpawn: {fileID: 1047475471}
-  rotatingPoint: {fileID: 102942808}
 --- !u!114 &911899717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,9 +1518,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dada709c31db5a246bd4c5dc380c57f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helicopterCount: 10
-  minSpawnTime: 3
-  maxSpawnTime: 5
+  helicopterCount: 12
+  minSpawnTime: 1
+  maxSpawnTime: 2
 --- !u!114 &911899719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,6 +1535,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScoreText: {fileID: 1414134571}
   HiScoreText: {fileID: 1210914685}
+--- !u!114 &911899720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911899714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91df2810498123c42a5962ec01f20915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &930618223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,7 +1975,7 @@ Transform:
   m_GameObject: {fileID: 1278545464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 4.5, z: 0}
+  m_LocalPosition: {x: 10, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

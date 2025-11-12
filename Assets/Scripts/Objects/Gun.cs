@@ -3,7 +3,7 @@ using ParaTrooper;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controls : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     [SerializeField] private Transform bulletSpawn;
     [SerializeField] private Transform rotatingPoint;
