@@ -5,14 +5,12 @@ using UnityEngine.InputSystem;
 
 public class Controls : MonoBehaviour
 {
-    [SerializeField] private Bullets Bullet;
-    [SerializeField] private GameObject BulletParent;
-    [SerializeField] private Transform BulletSpawn;
-    [SerializeField] private Transform RotatingPoint;
-    private float LookSensitivity;
-    private Vector3 RotatingVector;
-    public List<Bullets> Bullets;
+    [SerializeField] private Transform bulletSpawn;
+    [SerializeField] private Transform rotatingPoint;
+    private float lookDirection;
+    private Vector3 rotatingVector;
     private PlayerControl inputActions;
+    ObjectsManager objectsManager;
     private void Awake()
     {
         inputActions = new PlayerControl();
@@ -20,8 +18,12 @@ public class Controls : MonoBehaviour
         inputActions.Player.Left.performed += OnLeftPerformed;
         inputActions.Player.Right.performed += OnRightPerformed;
         inputActions.Player.Fire.performed += OnFirePerformed;
-        LookSensitivity = 0;
-        RotatingVector = Vector3.zero;
+        lookDirection = 0;
+        rotatingVector = Vector3.zero;
+    }
+    void Start()
+    {
+        objectsManager = ObjectsManager.GetManager();
     }
     void OnDisable()
     {
@@ -32,29 +34,29 @@ public class Controls : MonoBehaviour
     //**************************Movement*******************************
     private void OnLeftPerformed(InputAction.CallbackContext context)
     {
-        LookSensitivity = Constants.AimSensitivity;
-        RotatingVector = new Vector3(0, 0, LookSensitivity);
+        lookDirection = Constants.AimSensitivity;
+        rotatingVector = new Vector3(0, 0, lookDirection);
     }
     private void OnRightPerformed(InputAction.CallbackContext context)
     {
-        LookSensitivity = -Constants.AimSensitivity;
-        RotatingVector = new Vector3(0, 0, LookSensitivity);
+        lookDirection = -Constants.AimSensitivity;
+        rotatingVector = new Vector3(0, 0, lookDirection);
     }
     void FixedUpdate()
     {
-        if (LookSensitivity > 0)
+        if (lookDirection > 0)
         {
-            if (RotatingPoint.localEulerAngles.z < 255)
+            if (rotatingPoint.localEulerAngles.z < 255)
             {
-                RotatingPoint.localEulerAngles += RotatingVector;
+                rotatingPoint.localEulerAngles += rotatingVector;
             }
             return;
         }
-        if (LookSensitivity < 0)
+        if (lookDirection < 0)
         {
-            if (RotatingPoint.localEulerAngles.z > 105)
+            if (rotatingPoint.localEulerAngles.z > 105)
             {
-                RotatingPoint.localEulerAngles += RotatingVector;
+                rotatingPoint.localEulerAngles += rotatingVector;
             }
             return;
         }
@@ -62,22 +64,9 @@ public class Controls : MonoBehaviour
     //**************************Bullets*******************************
     private void OnFirePerformed(InputAction.CallbackContext context)
     {
-        Bullets bullet = GetBullet();
-        bullet.transform.position = BulletSpawn.position;
-        bullet.FireBullet(BulletSpawn.up.normalized);
-        LookSensitivity = 0;
-    }
-    private Bullets GetBullet()
-    {
-        foreach (Bullets shot in Bullets)
-        {
-            if (!shot.gameObject.activeInHierarchy)
-            {
-                return shot;
-            }
-        }
-        Bullets bullet = Instantiate(Bullet, BulletParent.transform);
-        Bullets.Add(bullet);
-        return bullet;
+        Bullets bullet = objectsManager.GetBullet();
+        bullet.transform.position = bulletSpawn.position;
+        bullet.FireBullet(bulletSpawn.up.normalized);
+        lookDirection = 0;
     }
 }
