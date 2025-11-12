@@ -63,4 +63,40 @@ class ObjectsManager : MonoBehaviour
         Helicopters.Add(helicopter);
         return helicopter;
     }
+    
+    //************************Plane***********************************
+    [SerializeField] private Plane plane;
+    [SerializeField] private GameObject PlaneParent;
+    public List<Plane> Planes;
+    public Plane GetPlane()
+    {
+        foreach (Plane h in Planes)
+        {
+            if (!h.gameObject.activeInHierarchy)
+            {
+                return h;
+            }
+        }
+        Plane plane = Instantiate(this.plane, PlaneParent.transform);
+        Planes.Add(plane);
+        return plane;
+    }
+    
+    //************************Helicopter***********************************
+    // [SerializeField] private Helicopter Helicopter;
+    // [SerializeField] private GameObject HelicopterParent;
+    // public List<Helicopter> Helicopters;
+    // public Helicopter GetHelicopter()
+    // {
+    //     foreach (Helicopter h in Helicopters)
+    //     {
+    //         if (!h.gameObject.activeInHierarchy)
+    //         {
+    //             return h;
+    //         }
+    //     }
+    //     Helicopter helicopter = Instantiate(Helicopter, HelicopterParent.transform);
+    //     Helicopters.Add(helicopter);
+    //     return helicopter;
+    // }
 }

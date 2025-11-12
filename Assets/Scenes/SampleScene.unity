@@ -1459,6 +1459,7 @@ GameObject:
   - component: {fileID: 911899715}
   - component: {fileID: 911899717}
   - component: {fileID: 911899718}
+  - component: {fileID: 911899721}
   - component: {fileID: 911899720}
   - component: {fileID: 911899719}
   m_Layer: 0
@@ -1506,6 +1507,9 @@ MonoBehaviour:
   Helicopter: {fileID: 3501458831479673945, guid: 3ccc351fb52423b449174171e4a786f6, type: 3}
   HelicopterParent: {fileID: 100510635}
   Helicopters: []
+  plane: {fileID: 5997472927211395582, guid: a480a1cdf5122a54d8526bf7cd263069, type: 3}
+  PlaneParent: {fileID: 1496591729}
+  Planes: []
 --- !u!114 &911899718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1547,6 +1551,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91df2810498123c42a5962ec01f20915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &911899721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911899714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c669d79f6e6244847bbbb3133b8985d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlaneCount: 2
+  PlaneCountInterval: 3
 --- !u!1 &930618223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,6 +1830,7 @@ Transform:
   - {fileID: 1108053379}
   - {fileID: 341995414}
   - {fileID: 100510636}
+  - {fileID: 1496591730}
   m_Father: {fileID: 911899715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1210914683
@@ -2117,6 +2136,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414134569}
   m_CullTransparentMesh: 1
+--- !u!1 &1496591729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496591730}
+  m_Layer: 0
+  m_Name: Planes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1496591730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496591729}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1111603415}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1802921263
 GameObject:
   m_ObjectHideFlags: 0

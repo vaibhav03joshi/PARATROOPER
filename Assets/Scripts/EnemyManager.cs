@@ -6,15 +6,13 @@ using UnityEngine;
 class EnemyManager : MonoBehaviour
 {
     public static EnemyManager enemyManager;
-    private Score score;
     private HelicopterManager helicopterManager;
+    private PlaneManager planeManager;
     private List<Enemy> TroopsOnRight, TroopsOnLeft;
     private bool attackStarted = false;
     private void Awake()
     {
         enemyManager = this;
-        TroopsOnRight = new List<Enemy>();
-        TroopsOnLeft = new List<Enemy>();
     }
     public static EnemyManager GetEnemyManager()
     {
@@ -23,10 +21,33 @@ class EnemyManager : MonoBehaviour
     private void Start()
     {
         helicopterManager = HelicopterManager.GetHelicopterManager();
-        score = Score.GetScoreManager();
-        float timeTaken = helicopterManager.StartAttack();
-        StartCoroutine(AttackEnded(timeTaken));
+        planeManager = PlaneManager.GetPlaneManager();
+        TroopsOnRight = new List<Enemy>();
+        TroopsOnLeft = new List<Enemy>();
+        HelicopterAttack();
     }
+    //************************AirAttack******************************
+    private void HelicopterAttack()
+    {
+        float timeTaken = helicopterManager.StartAttack();
+        StartCoroutine(HelicopterPhaseEnded(timeTaken));
+    }
+    IEnumerator HelicopterPhaseEnded(float timeTaken)
+    {
+        yield return new WaitForSeconds(timeTaken + 4f);
+        PlaneAttack();
+    }
+    private void PlaneAttack()
+    {
+        float timeTaken = planeManager.StartAttack();
+        StartCoroutine(PlanePhaseEnded(timeTaken));
+    }
+    IEnumerator PlanePhaseEnded(float timeTaken)
+    {
+        yield return new WaitForSeconds(timeTaken + 4f);
+        HelicopterAttack();
+    }
+    //************************TroopsLogic******************************
     public void TroopLanded(int direction, Enemy Troop)
     {
         if (direction > 0)
@@ -57,10 +78,5 @@ class EnemyManager : MonoBehaviour
             StartCoroutine(Troop.StartAttack(attackTime));
             attackTime += 0.5f;
         }
-    }
-    IEnumerator AttackEnded(float timeTaken)
-    {
-        yield return new WaitForSeconds(timeTaken + 4f);
-        score.GameOver();
     }
 }
