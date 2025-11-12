@@ -11,11 +11,13 @@ class Helicopter : MonoBehaviour
     private int spawnPosition;
     private bool troopDeployed;
     private ObjectsManager objectsManager;
+    private Score score;
     private void Awake() {
         gameObject.SetActive(false);
         direction = Vector3.zero;
     }
     private void Start() {
+        score = Score.GetScoreManager();
         objectsManager = ObjectsManager.GetManager();
     }
     public void DeployHelicopter(int _direction)
@@ -53,6 +55,7 @@ class Helicopter : MonoBehaviour
     {
         if (collision.collider.CompareTag("Bullet"))
         {
+            score.AddToScore(20);
             gameObject.SetActive(false);
         }
     }

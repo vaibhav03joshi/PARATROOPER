@@ -22,6 +22,7 @@ class HelicopterManager : MonoBehaviour
             time += Random.Range(minSpawnTime, maxSpawnTime);
             StartCoroutine(SpawnHelicopters(time));
         }
+        
     }
     IEnumerator SpawnHelicopters(float time)
     {

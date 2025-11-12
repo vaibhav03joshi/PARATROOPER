@@ -8,6 +8,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody;
     private float parashootRange;
     private bool parashootDeployed = false;
+    private Score score;
+    void Start()
+    {
+        score = Score.GetScoreManager();
+    }
     void Update()
     {
         if (!parashootDeployed && transform.position.y < parashootRange)
@@ -40,7 +45,7 @@ public class Enemy : MonoBehaviour
         }
         if (collision.collider.CompareTag("Bullet"))
         {
-            //Dead
+            score.AddToScore(5);
             gameObject.SetActive(false);
         }
     }

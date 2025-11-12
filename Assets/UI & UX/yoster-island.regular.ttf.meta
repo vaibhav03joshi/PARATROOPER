@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f823dd79c3117674ea6b8742f69fe3f1
+guid: aa46a5871307204469af56e1ea56ea7d
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - BoldPixels
+  - Yoster Island
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

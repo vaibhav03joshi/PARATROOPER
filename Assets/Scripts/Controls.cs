@@ -11,6 +11,7 @@ public class Controls : MonoBehaviour
     private Vector3 rotatingVector;
     private PlayerControl inputActions;
     ObjectsManager objectsManager;
+    Score score;
     private void Awake()
     {
         inputActions = new PlayerControl();
@@ -24,6 +25,7 @@ public class Controls : MonoBehaviour
     void Start()
     {
         objectsManager = ObjectsManager.GetManager();
+        score = Score.GetScoreManager();
     }
     void OnDisable()
     {
@@ -64,6 +66,7 @@ public class Controls : MonoBehaviour
     //**************************Bullets*******************************
     private void OnFirePerformed(InputAction.CallbackContext context)
     {
+        score.AddToScore(-1);
         Bullets bullet = objectsManager.GetBullet();
         bullet.transform.position = bulletSpawn.position;
         bullet.FireBullet(bulletSpawn.up.normalized);
