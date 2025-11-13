@@ -5,6 +5,7 @@ using UnityEngine;
 
 class Helicopter : MonoBehaviour
 {
+    //Had to add destroy animation
     [SerializeField] private float speed = 0.1f;
     [SerializeField] private List<int> spawnPoint;
     [SerializeField] private Transform Sprite;
