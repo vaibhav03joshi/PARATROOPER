@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private float minRange = 0, maxRange = 1;
     [SerializeField] private float downwardSpeed = -2;
     [SerializeField] private Rigidbody2D _rigidbody;
@@ -55,7 +56,7 @@ public class Enemy : MonoBehaviour
     public IEnumerator StartAttack(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-
+        animator.Play("Walk");
         isAttacking = true;
         directionToMove.x = transform.position.x > 0 ? -1 : 1;
     }
@@ -102,9 +103,11 @@ public class Enemy : MonoBehaviour
             transform.tag = "Enemy";
             isAttacking = false;
             TroopsOnPosition++;
+            animator.Play("Idle");
         }
         if (collision.collider.CompareTag("Enemy") && isAttacking)
         {
+            animator.Play("Idle");
             transform.tag = "Enemy";
             isAttacking = false;
             TroopsOnPosition++;

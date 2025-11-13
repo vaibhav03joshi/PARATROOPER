@@ -7,6 +7,7 @@ class Helicopter : MonoBehaviour
 {
     [SerializeField] private float speed = 0.1f;
     [SerializeField] private List<int> spawnPoint;
+    [SerializeField] private Transform Sprite;
     private Vector3 direction;
     private int spawnPosition;
     private bool troopDeployed;
@@ -23,6 +24,7 @@ class Helicopter : MonoBehaviour
     public void DeployHelicopter(int _direction)
     {
         direction.x = _direction;
+        Sprite.localEulerAngles = new Vector3(_direction > 0 ? 0 : 180, 0, -90); 
         int index = UnityEngine.Random.Range(0, spawnPoint.Count - 1);
         spawnPosition = spawnPoint[index];
         troopDeployed = false;
