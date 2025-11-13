@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     private bool isLanded = false;
     private bool isAttacking = false;
     private Vector3 directionToMove = new Vector3();
-    private static int TroopsOnPosition = 0;
+    public static int TroopsOnPosition = 0;
     void Start()
     {
         score = Score.GetScoreManager();
@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
         transform.position += new Vector3(0.2f * directionToMove.x, 0.33f, 0);
         yield return new WaitForSeconds(0.5f);
         transform.position += new Vector3(0.2f * directionToMove.x, 0.33f, 0);
-
-        Debug.Log("GameOver");
+        // TroopsOnPosition = 0;
+        score.GameOver();
     }
 }
