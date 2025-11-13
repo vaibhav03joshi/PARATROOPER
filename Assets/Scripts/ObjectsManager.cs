@@ -9,94 +9,94 @@ class ObjectsManager : MonoBehaviour
         objectsManager = this;
     }
     //************************Bullets***********************************
-    [SerializeField] private Bullets Bullet;
-    [SerializeField] private GameObject BulletParent;
-    public List<Bullets> Bullets;
+    [SerializeField] private Bullets bullet;
+    [SerializeField] private GameObject bulletParent;
+    public List<Bullets> bullets;
     public Bullets GetBullet()
     {
-        foreach (Bullets shot in Bullets)
+        foreach (Bullets b in bullets)
         {
-            if (!shot.gameObject.activeInHierarchy)
+            if (!b.gameObject.activeInHierarchy)
             {
-                return shot;
+                return b;
             }
         }
-        Bullets bullet = Instantiate(Bullet, BulletParent.transform);
-        Bullets.Add(bullet);
-        return bullet;
+        Bullets newBullet = Instantiate(bullet, bulletParent.transform);
+        bullets.Add(newBullet);
+        return newBullet;
     }
     public static ObjectsManager GetManager()
     {
         return objectsManager;
     }
     //************************Enemy***********************************
-    [SerializeField] private Enemy Enemy;
-    [SerializeField] private GameObject EnemyParent;
-    public List<Enemy> Enemies;
+    [SerializeField] private Enemy enemy;
+    [SerializeField] private GameObject enemyParent;
+    public List<Enemy> enemies;
     public Enemy GetEnemy()
     {
-        foreach (Enemy e in Enemies)
+        foreach (Enemy e in enemies)
         {
             if (!e.gameObject.activeInHierarchy)
             {
                 return e;
             }
         }
-        Enemy enemy = Instantiate(Enemy, EnemyParent.transform);
-        Enemies.Add(enemy);
-        return enemy;
+        Enemy newEnemy = Instantiate(enemy, enemyParent.transform);
+        enemies.Add(newEnemy);
+        return newEnemy;
     }
     //************************Helicopter***********************************
-    [SerializeField] private Helicopter Helicopter;
-    [SerializeField] private GameObject HelicopterParent;
-    public List<Helicopter> Helicopters;
+    [SerializeField] private Helicopter helicopter;
+    [SerializeField] private GameObject helicopterParent;
+    public List<Helicopter> helicopters;
     public Helicopter GetHelicopter()
     {
-        foreach (Helicopter h in Helicopters)
+        foreach (Helicopter h in helicopters)
         {
             if (!h.gameObject.activeInHierarchy)
             {
                 return h;
             }
         }
-        Helicopter helicopter = Instantiate(Helicopter, HelicopterParent.transform);
-        Helicopters.Add(helicopter);
-        return helicopter;
+        Helicopter newHelicopter = Instantiate(helicopter, helicopterParent.transform);
+        helicopters.Add(newHelicopter);
+        return newHelicopter;
     }
     
     //************************Plane***********************************
     [SerializeField] private Plane plane;
-    [SerializeField] private GameObject PlaneParent;
-    public List<Plane> Planes;
+    [SerializeField] private GameObject planeParent;
+    public List<Plane> planes;
     public Plane GetPlane()
     {
-        foreach (Plane h in Planes)
+        foreach (Plane p in planes)
         {
-            if (!h.gameObject.activeInHierarchy)
+            if (!p.gameObject.activeInHierarchy)
             {
-                return h;
+                return p;
             }
         }
-        Plane plane = Instantiate(this.plane, PlaneParent.transform);
-        Planes.Add(plane);
+        Plane plane = Instantiate(this.plane, planeParent.transform);
+        planes.Add(plane);
         return plane;
     }
     
-    //************************Helicopter***********************************
-    // [SerializeField] private Helicopter Helicopter;
-    // [SerializeField] private GameObject HelicopterParent;
-    // public List<Helicopter> Helicopters;
-    // public Helicopter GetHelicopter()
-    // {
-    //     foreach (Helicopter h in Helicopters)
-    //     {
-    //         if (!h.gameObject.activeInHierarchy)
-    //         {
-    //             return h;
-    //         }
-    //     }
-    //     Helicopter helicopter = Instantiate(Helicopter, HelicopterParent.transform);
-    //     Helicopters.Add(helicopter);
-    //     return helicopter;
-    // }
+    //************************Missiles***********************************
+    [SerializeField] private Missile missile;
+    [SerializeField] private GameObject MissileParent;
+    public List<Missile> Missiles;
+    public Missile GetMissile()
+    {
+        foreach (Missile m in Missiles)
+        {
+            if (!m.gameObject.activeInHierarchy)
+            {
+                return m;
+            }
+        }
+        Missile newMissile = Instantiate(missile, MissileParent.transform);
+        Missiles.Add(newMissile);
+        return newMissile;
+    }
 }

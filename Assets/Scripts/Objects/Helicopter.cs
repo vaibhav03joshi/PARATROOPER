@@ -57,6 +57,7 @@ class Helicopter : MonoBehaviour
         {
             score.AddToScore(20);
             gameObject.SetActive(false);
+            collision.collider.gameObject.SetActive(false);
         }
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Enemy
   - Gun
+  - Platform
+  - Falling
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float downwardSpeed = -2;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float attackingSpeed;
+    [SerializeField] private BoxCollider2D ParashootCollider;
+    [SerializeField] private GameObject Parashoot;
     private EnemyManager enemyManager;
     private float parashootRange;
     private bool parashootDeployed = false;
@@ -36,6 +38,9 @@ public class Enemy : MonoBehaviour
     public void DeployTroop()
     {
         gameObject.SetActive(true);
+        gameObject.tag = "Enemy";
+        Parashoot.SetActive(false);
+        ParashootCollider.enabled = false;
         _rigidbody.gravityScale = 0f;
         parashootDeployed = false;
         _rigidbody.linearVelocityY = downwardSpeed;
@@ -43,7 +48,9 @@ public class Enemy : MonoBehaviour
     }
     private void DeployParashoot()
     {
-        _rigidbody.linearVelocityY /= 2;
+        _rigidbody.linearVelocityY = downwardSpeed / 2;
+        Parashoot.SetActive(true);
+        ParashootCollider.enabled = true;
     }
     public IEnumerator StartAttack(float waitTime)
     {
@@ -56,6 +63,13 @@ public class Enemy : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground") && !isLanded)
         {
+            if (gameObject.tag == "Falling")
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+            Parashoot.SetActive(false);
+            ParashootCollider.enabled = false;
             isLanded = true;
             transform.tag = "Ground";
             _rigidbody.gravityScale = 1f;
@@ -68,12 +82,22 @@ public class Enemy : MonoBehaviour
                 enemyManager.TroopLanded(-1, this);
             }
         }
-        if (collision.collider.CompareTag("Bullet"))
+        if (collision.collider.CompareTag("Falling"))
         {
             score.AddToScore(5);
             gameObject.SetActive(false);
+            collision.collider.gameObject.SetActive(false);
         }
-        if (collision.collider.CompareTag("Gun") && isAttacking)
+        if (collision.collider.CompareTag("Bullet"))
+        {
+            gameObject.tag = "Falling";
+            Parashoot.SetActive(false);
+            ParashootCollider.enabled = false;
+            score.AddToScore(5);
+            _rigidbody.linearVelocityY = downwardSpeed * 2;
+            collision.collider.gameObject.SetActive(false);
+        }
+        if (collision.collider.CompareTag("Platform") && isAttacking)
         {
             transform.tag = "Enemy";
             isAttacking = false;

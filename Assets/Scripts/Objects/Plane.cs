@@ -5,6 +5,8 @@ using UnityEngine;
 class Plane : MonoBehaviour
 {
     [SerializeField] private float speed = 0.2f;
+    [SerializeField] private Vector3 target = new Vector3(0, -3, 0);
+    [SerializeField] private float missileSpeed = 1f;
     private bool missileDeployed;
     private ObjectsManager objectsManager;
     private Score score;
@@ -32,10 +34,14 @@ class Plane : MonoBehaviour
     {
         if (!missileDeployed)
         {
-            // if (MathF.Abs(transform.position.x - spawnPosition) < 0.1f)
-            // {
-            //     missileDeployed = true;
-            // }
+            if (MathF.Abs(transform.position.x + 7) < 0.1f)
+            {
+                Missile missile = objectsManager.GetMissile();
+                missile.transform.position = transform.position + new Vector3(0, -0.3f, 0);
+                missile.gameObject.SetActive(true);
+                missile._rigidbody.linearVelocity = (target - missile.transform.position).normalized * missileSpeed;
+                missileDeployed = true;
+            }
         }
     }
     void FixedUpdate()
@@ -48,6 +54,7 @@ class Plane : MonoBehaviour
         {
             score.AddToScore(30);
             gameObject.SetActive(false);
+            collision.collider.gameObject.SetActive(false);
         }
     }
 }
